@@ -1,0 +1,317 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- <button style='background-color: #FF6E30;width: 175px;' class='btn text-white'>Ro'yhatdan o'tish</button> -->
+{% block title %}
+    RoboHack - Musobaqa {{turnir.id}}
+{% endblock title %}
+
+
+{% block content %}
+    <div id='response' class="respon">
+        <div id='close' class="clrear m-3">
+            <i style='float: right;font-size: 1.5em;cursor: pointer;' class='fas fa-close'></i>
+            <br>
+            <br>
+            <ul>
+                <li><a style='background-color: #FF6E30;' class='btn text-white mt-3' href="{% url 'main:home' %}">Bosh sahifa</a></li>
+                <li><a style='background-color: #FF6E30;' class='btn text-white mt-3' href="#section-1">Hackaton-ga yozilish</a></li>
+                <li><a style='background-color: #FF6E30;' class='btn text-white mt-3' href="#event">Event</a></li>
+                <li><a style='background-color: #FF6E30;' class='btn text-white mt-3' href="#div-7">Savol(Izoh)-qoldirish</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <header>
+        <div class="navbar">
+            
+            <h2><a class='logo' href="{% url 'main:home' %}">RoboHack</a></h2>
+            <nav>
+                <ul>
+                    <i id='bar' onclick="open()" class='fas fa-bars'></i>
+                    <li><a href="{% url 'main:home' %}">Bosh sahifa</a></li>
+                    <li><a href="#section-1">Hackaton-ga yozilish</a></li>
+                    <li><a href="#event">Event</a></li>
+                    <li><a href="#div-7">Savol(Izoh)-qoldirish</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="section-1">
+        <div class="container">
+            <br><br>
+            <center>
+                <img style='width: 35%;' src="{{turnir.image.url}}" alt="">
+            </center>
+            <h1 class='mt-5'>{{turnir.title}}</h1>
+            <h6 class='mt-3 text-white'>Manzil : {{turnir.address}}</h6>
+            <h6 class='text-white'>Sana : {{turnir.date|date:'d.m.Y'}}</h6>
+            <h6 class='text-white'>Vaqti : {{turnir.date|date:'H:i:s'}}</h6>
+            <h6 class='mt-4'>{{turnir.description}}</h6>
+            <br>
+            <center>
+                <button id="section-1" style='background-color: #FF6E30;width: 175px;' class='btn text-white' data-toggle="modal" data-target="#exampleModal1">Ro'yhatdan o'tish</button>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div style="background-color: rgba(16, 19, 20, 0.822);backdrop-filter: blur(10px);border-radius: 15px;display: flex;flex-direction: column;justify-content: center;align-items: center;text-align: center;padding: 20px 50px;" class="modal-content">
+                            <div class="modal-header mb-2">
+                                <center>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <i class="fas fa-close"></i>
+                                    </button>
+                                    <br>
+                                    <br>
+                                    <h3 class="text-white" id="exampleModalTitle">Hackaton-ga yozilish</h3>
+                                    <h6><b>Quyidagi formani to'ldiring</b></h6>
+                                </center>
+                            </div>
+                            <form method='POST' action="">
+                                {% csrf_token %}
+                                {{auth.as_p}}
+                                <button style='background-color: #FF6E30;width: 150px;' class='btn text-white' type="submit">Ro'yhatdan o'tish</button>
+                            </form>
+                            <br>
+                            <!-- <div class="modal-body">
+                            Menu Savatchaga Olindi
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                <h1 class='mt-5'>Hackaton kimlar uchun ?</h1>
+            </center>
+        </div>
+    </div>
+
+    <div class="section-2 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-4 mb-3">
+                    <div id='card' class="card text-center">
+                        <center class="mt-3 mb-3">
+                            <img src="{% static '/img/kitobhon.png' %}" class="car-img-top" alt="">
+                            <div class="card-body">
+                                <h4 class='text-white mt-2'>Web Dasturchilar</h4>
+                                <h5 style='color: #BEB5B6; font-size: 18px;font-weight: bold;'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim eaque dolorem animi accusamus.</h5>
+                            </div>  
+                        </center>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 mb-3">
+                    <div id='card' class="card text-center">
+                        <center class="mt-3 mb-3">
+                            <img src="{% static '/img/pamyat.png' %}" class="car-img-top" alt="">
+                            <div class="card-body">
+                                <h4 class='text-white mt-2'>Dasturchilar</h4>
+                                <h5 style='color: #BEB5B6; font-size: 18px;font-weight: bold;'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim eaque dolorem animi accusamus.</h5>
+                            </div>  
+                        </center>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 mb-3">
+                    <div id='card' class="card text-center">
+                        <center class="mt-3 mb-3">
+                            <img src="{% static '/img/graphic-design.png' %}" class="car-img-top" alt="">
+                            <div class="card-body">
+                                <h4 class='text-white mt-2'>Grafik va Web Dizaynerlar</h4>
+                                <h5 style='color: #BEB5B6; font-size: 18px;font-weight: bold;'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim eaque dolorem animi accusamus.</h5>
+                            </div>  
+                        </center>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <br>
+            <center>
+               <h1 class='mt-5'>Ushbu event name haqida qisqacha</h1> 
+            </center>
+            <div id="event" class="event-ab mt-5">
+                <div style='width: 92%;' class="container">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 mb-5">
+                            <h3>About Event</h3>
+                            <h6 class='mt-3'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex cum iure aliquid quaerat voluptatibus quibusdam.</h6>
+                            <h3 class='mt-4'>Hackaton o'zi nima ?</h3>
+                            <h6 class='mt-3'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, voluptatum. Dicta non libero quam. Odio maiores tempore minus accusantium commodi esse reiciendis ducimus officiis eaque soluta laudantium, veritatis architecto. At?</h6>
+                            <h3 class='mt-4'>Qanday foydasi bor ?</h3>
+                            <h6 class='mt-4'><i class='fas fa-brain mr-2'></i>Aqlni charxlaydi</h6>
+                            <h6 class='mt-2'><i class='fas fa-tasks mr-2'></i>Algoritmingiz kuchayadi</h6>
+                            <h6 class='mt-2'><i class='fas fa-smile mr-2'></i>Fikrlash qobiliyati</h6>
+                            <h6 class='mt-2'><i class='fas fa-child mr-2'></i>Bilimlarni tekshirib olish imkoniyati</h6>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <img style='width: 90%;float: right;' src="{{turnir.image.url}}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <center class='mt-5'>
+                <h1>Hackaton'dan nima olasiz ?</h1>
+            </center>
+            <br>
+            <div class="row mt-2">
+                <div class="col-sm-12 col-md-4 mb-3">
+                    <div id='card' class="card text-center">
+                        <center class="mt-3 mb-3">
+                            <img src="{% static '/img/maqsad.png' %}" class="car-img-top" alt="">
+                            <div class="card-body">
+                                <h4 class='text-white mt-2'>Networking</h4>
+                                <h5 style='color: #BEB5B6; font-size: 18px;font-weight: bold;'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim eaque dolorem animi accusamus.</h5>   
+                            </div>  
+                        </center>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 mb-3">
+                    <div id='card' class="card text-center">
+                        <center class="mt-3 mb-3">
+                            <img src="{% static '/img/Konikma.png' %}" class="car-img-top" alt="">
+                            <div class="card-body">
+                                <h4 class='text-white mt-2'>Ko'nikmalar</h4>
+                                <h5 style='color: #BEB5B6; font-size: 18px;font-weight: bold;'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim eaque dolorem animi accusamus.</h5>
+                            </div>  
+                        </center>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 mb-3">
+                    <div id='card' class="card text-center">
+                        <center class="mt-3 mb-3">
+                            <img src="{% static '/img/Sovga.png' %}" class="car-img-top" alt="">
+                            <div class="card-body">
+                                <h4 class='text-white mt-2'>Grafik va Veb dizaynerlar</h4>
+                                <h5 style='color: #BEB5B6; font-size: 18px;font-weight: bold;'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim eaque dolorem animi accusamus.</h5>
+                            </div>  
+                        </center>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <div class="timeline mt-5">
+                <center style='width: 100%;'>
+                    <h1>Timeline</h1>
+                    <br>
+                    <div style='max-width: 100%;flex-direction: row; justify-content: space-around;display: flex;' class="time">
+                        <div style="width: 40%;" class="container">
+                            
+                            <div class="row">
+                                
+                                {% for tt in turnir.turnirs_time.all %}
+                                    <div style="margin-right: -50px" class="col-sm-12 col-md-12 col-lg-6">
+                                        <h5><i class='fas fa-clock mr-2'></i><b> {{tt.timeline|date:'H:i'}}</b></h5>
+                                        <h6>{{tt.text}}</h6>
+                                        <br>
+                                    </div>
+                                    
+                                {% endfor %}
+                                <center>
+                                    <div style="position: absolute; width: 2px;height:300px;background-color: #fff;margin-left: 35px;margin-top: -80px;" class="column"></div>
+                                </center>
+                            </div>
+                        </div>
+                        <!-- {% for tt in turnir.turnirs_time.all %}
+                            <div style='width: 49%;float: left;scroll-behavior: smooth;' class="content mt-5">
+                                <h5><i class='fas fa-clock mr-2'></i><b> {{tt.timeline|date:'H:i'}}</b></h5>
+                                <h6>{{tt.text}}</h6>
+                                <br>
+                            </div>
+                        {% endfor %} -->
+                        <!-- <div style="float: center; width: 2px;height:300px;background-color: #fff;" class="column"></div> -->
+                        <!-- <div style='width: 49%;float: right;scroll-behavior: smooth;' class="content mt-5">
+                            {% for tt in turnir.turnirs_time.all %}
+                                <h5><i class='fas fa-clock mr-2'></i><b> {{tt.timeline|date:'H:i'}}</b></h5>
+                                <h6>{{tt.text}}</h6>
+                                <br>
+                            {% endfor %}
+                        </div> -->
+                    </div>
+                    <br>
+                    <button id="section-1" style='background-color: #FF6E30;width: 175px;' class='btn text-white' data-toggle="modal" data-target="#exampleModal1">Ro'yhatdan o'tish</button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div style="background-color: rgba(16, 19, 20, 0.822);backdrop-filter: blur(10px);border-radius: 15px;display: flex;flex-direction: column;justify-content: center;align-items: center;text-align: center;padding: 20px 50px;" class="modal-content">
+                                <div class="modal-header mb-2">
+                                    <center>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <i class="fas fa-close"></i>
+                                        </button>
+                                        <br>
+                                        <br>
+                                        <h3 class="text-white" id="exampleModalTitle">Hackaton-ga yozilish</h3>
+                                        <h6><b>Quyidagi formani to'ldiring</b></h6>
+                                    </center>
+                                </div>
+                                <form method='POST' action="">
+                                    {% csrf_token %}
+                                    {{auth.as_p}}
+                                    <button style='background-color: #FF6E30;width: 150px;' class='btn text-white' type="submit">Ro'yhatdan o'tish</button>
+                                </form>
+                                <br>
+                                <!-- <div class="modal-body">
+                                Menu Savatchaga Olindi
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </center>
+
+                <div id='div-7' class="div-7">
+                    <div class="contact">
+                        <center>
+                            <h3 class='mt-5'>Tadbir haqida savollar qoldimi ?</h3>
+                            <h5 style='color: #CDC3C4;'>Quyidagi formani to'ldiring va bizga sizni qiziqtirgan savollaringizni qoldiring.</h5>
+                            <br>
+                            <form method='POST' action="">
+                                {% csrf_token %}
+                                {{form.as_p}}
+                                <button style='background-color: #FF6E30;width: 150px;' class='btn text-white' type="submit">Yuborish</button>
+                            </form>
+                            <br>
+                        </center>
+                    </div>
+                </div>
+
+                <div id="footer" class="footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6 col-md-4 mb-5">
+                                <a style='text-decoration: none;' href="#"><h2><b> RoboHack</b></h2></a>
+                                <h6 style='font-weight: bold;font-size: 15px;' class='text-white mt-3'>Robocode IT Academy tomonidan 2022-yil yo'lga qo'yilgan.</h6>
+                                <h6><b>Barcha taklif va savollaringizni bizga yozib yuborishingiz mumkin.</b></h6>
+                            </div>
+                            <div class="col-6 col-md-3 mb-5">
+                                <h3>Bog'lanish</h3>
+                                <h6 class='mt-3'><i class='fas fa-phone mr-2'></i>+998931234567</h6>
+                                <h6 class='mt-3'><i class='fas fa-map-marker-alt mr-2'></i>Andijon sh. Uzbekistan</h6>
+                                <h6 class='mt-3'><i class='fas fa-envelope mr-2'></i> @hackathon.uz</h6>
+                            </div>
+                            <div class="col-6 col-md-2 mb-5">
+                                <h3>Qoshimcha</h3>
+                                <h6 class='mt-3'><i class='fas fa-info mr-2'></i>Biz haqimizda</h6>
+                                <h6 class='mt-3'><i class='fas fa-phone mr-2'></i>Aloqa</h6>
+                            </div>
+                            <div class="col-6 col-md-2 mb-5">
+                                <h3>Bo'limlar</h3>
+                                <h6 class='mt-3'>Musobaqalar</h6>
+                                <h6 class='mt-3'>Tadbirlar</h6>
+                                <h6 class='mt-3'>Bog'lanish</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

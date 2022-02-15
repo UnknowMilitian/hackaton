@@ -1,0 +1,240 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Hakaton - Andijan
+{% endblock title %}    
+
+{% block content %}
+    <div id='response' class="respon">
+        <div id='close' class="clrear m-3">
+            <i style='float: right;font-size: 1.5em;cursor: pointer;' class='fas fa-close'></i>
+            <br>
+            <br>
+            <ul>
+                <li><a style='background-color: #FF6E30;' class='btn text-white mt-3' href="#div-1">Bosh sahifa</a></li>
+                <li><a style='background-color: #FF6E30;' class='btn text-white mt-3' href="#div-2">Musobaqalar</a></li>
+                <li><a style='background-color: #FF6E30;' class='btn text-white mt-3' href="#div-3">Tadbirlar</a></li>
+                <li><a style='background-color: #FF6E30;' class='btn text-white mt-3' href="#div-7">Bog'lanish</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <header>
+        <div class="navbar">   
+            <h2><a class='logo' href="#">RoboHack</a></h2>
+            <nav>
+                <ul>
+                    <i id='bar' onclick="open()" class='fas fa-bars'></i>
+                    <li><a href="#div-1">Bosh sahifa</a></li>
+                    <li><a href="#div-2">Musobaqalar</a></li>
+                    <li><a href="#div-3">Tadbirlar</a></li>
+                    <li><a href="#div-7">Bog'lanish</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <div class="container">
+        <div id='div-1' class="div-1 mb-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 mb-5">
+                        <h1 class='di-1'>Xududiy hackaton Designer & Developerlar uchun </h1>
+                        <h5 style='color: #CDC3C4;' class='mt-4'><b><a style='color: rgb(233, 231, 231);' href="https://robocode.uz">robocode.uz </a></b><b>tomonidan o'tkazilayotgan dasturchi va grafik/veb dizaynerlar <br>
+                            hakatonida ishtirok eting.</b></h5>
+                        <a href="#div-7" style='background-color: #FF6E30; width: 165px; height: 45px;' class='btn mt-3 text-white'><b>Bog'lanish</b></a>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <img src="{% static '/img/div-1.png' %}" style='width: 90%;' alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <div id='div-2' class="div-2 mb-5">
+            <center>
+                <h1>Bizning musobaqalar</h1>
+            </center>
+            <br>
+            <div class="container mt-3">
+                <div class="row">
+                    {% for turnir in turnirs %}
+                        <div class="col-sm-12 col-md-4 mb-3">
+                            <div id='card' class="card text-center">
+                                <center class="mt-3 mb-3">
+                                    <a href="{% url 'main:turnir_detail' turnir.id %}"><img src="{{ turnir.image.url }}" class="car-img-top" alt=""></a>
+                                    <div class="card-body">
+                                        <h4 class='text-white mt-2'>{{ turnir.category }}</h4>
+                                        <h5 style='color: #BEB5B6; font-size: 18px;font-weight: bold;'>{{turnir.description|truncatewords:'12'}}</h5>
+                                        <h6 class="text-white mt-3">{{turnir.date|date:'d.m.Y'}} | {{turnir.date|date:'H:i:s'}}</h6>
+                                        <a  href="{% url 'main:turnir_detail' turnir.id %}" style='color: white; background-color: #FF6E30; width: 144px;border-radius: 8px;' class='btn text-white mt-2'><b> Yozilish</b></a>
+                                    </div>  
+                                </center>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+        <div class="div-3 mb-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 mb-5">
+                        <img src="{% static '/img/div-3.png' %}" style='width: 100%;' alt="">
+                    </div>
+                    <div class="col-sm-12 col-md-6 text-white">
+                        <h3>RoboHack o'zi nima ?</h3>
+                        <p style='color: #F4F4F4;font-weight: 700;' class='mt-4'>Robocode IT Academy , Andijon Yoshlar Texnoparki hamda Innovatsiyalar vazirligi hamda Xalq ta'limi vazirligi tomonidan Andijonda dasturlash va dizaynerlik , aniq fanlar o'zlashtirishi va boshqa sohalarda iqtidorli yoshlarni saralab olish uchun o'tkaziladgan tadbirlar , musobaqalar uchun ro'yhatdan o'tish va ular haqida ma'lumotlarni olish uchun tizim.</p>
+                        <br>
+                        <h4 class='text-white'>Qanday foydasi bor ?</h4>
+                        <h6 class='mt-4'><i class='fas fa-brain mr-2'></i> Aqlni charxlovchi topshiriqlar</h6>
+                        <h6><i class="fas fa-tasks mr-2"></i> Algoritmingiz kuchayadi</h6>
+                        <h6><i class="fas fa-smile mr-2"></i> Yuqori tashkiliy atmosfera</h6>
+                        <h6><i class="fas fa-child mr-2"></i> Bilimlarni tekshirib olish imkoniyati</h6>
+                        <h6><i class="fas fa-arrow-up mr-2"></i> Shaxsiy rivojlanishingiz uchun imkoniyat</h6>
+                        <h6><i class="fas fa-sign-in mr-2"></i> Masofadan turib ro'yhatdan o'tish</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="div-4 mb-5">
+            <div class="container">
+                <center>
+                    <h1>Bizning hamkorlarimiz</h1>
+                </center>
+                <div class="clr mt-5">
+                    <div class="hamkor ml-4 mr-4">
+                        <img class='mb-5' src="{% static '/img/rb.png' %}" width="250px" height='70px' alt="">
+                        <img class='mb-5' src="{% static '/img/texnopark.png' %}" width="250px" height='70px' alt="">
+                        <img class='mb-5' src="{% static '/img/inn.png' %}" width="250px" height='70px' alt="">
+                        <img class='mb-5' src="{% static '/img/talim.png' %}" width="250px" height='70px' alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id='div-3' class="div-5 mb-5">
+            <center>
+                <h1>Tadbirlar</h1>
+            </center>
+            <div class="container">
+                <div class="row mt-5">
+                    
+                    {% for t in tadbirs %}
+                        <div class="col-sm-12 col-md-4 mb-3">
+                            <div id='card' class="card text-center">
+                                <center class="mt-3 mb-3">
+                                   <a href="{% url 'main:tadbir_detail' t.id %}"><img src="{{t.image.url}}" class="car-img-top" alt=""></a>
+                                    <div class="card-body">
+                                        <h4 class='text-white mt-2'><b>{{t.title}}</b></h4>
+                                        <h5 class='mt-3' style='color: #BEB5B6;font-size: 19px;'>{{t.description|truncatewords:'12'}}</h5>
+                                        <h6 class="text-white mt-3"><b>{{t.date|date:'d.m.Y'}} | {{t.date|date:'H:i:s'}}</b></h6>
+                                        <a href="{% url 'main:tadbir_detail' t.id %}" style='color: white; background-color: #FF6E30; width: 144px;border-radius: 8px;' class='btn text-white mt-2'><b> Yozilish</b></a>
+                                    </div>  
+                                </center>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+        <div class="div-6 mb-5">
+            <center>
+                <h3>CSS Battle 2 (30.10.2021) qanday o'tgan edi ?</h3>
+                <p class='mt-2'>Ushbu tadbirdan fotolavhalar</p>
+            </center>
+        
+            <div class="splide">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide">
+                            <img src="{% static '/img/slide1.png' %}">
+                        </li>
+                        <li class="splide__slide">
+                            <img src="{% static '/img/slide2.png' %}">
+                        </li>
+                        <li class="splide__slide">
+                            <img src="{% static '/img/slide3.png' %}">
+                        </li>
+                    </ul>
+                </div>
+                <div class="splide__progress">
+                    <div class="splide__progress__bar" style="width: 72.72%;">
+                    </div>
+                </div>
+                <ul class="splide__pagination"><li><button class="splide__pagination__page is-active" type="button" aria-controls="splide01-slide01 splide01-slide02 splide01-slide03" aria-label="Go to page 1" aria-current="true"></button></li><li><button class="splide__pagination__page" type="button" aria-controls="splide01-slide04 splide01-slide05 splide01-slide06" aria-label="Go to page 2"></button></li><li><button class="splide__pagination__page" type="button" aria-controls="splide01-slide07 splide01-slide08 splide01-slide09" aria-label="Go to page 3"></button></li></ul></div>
+
+            </div>
+        </div>
+
+        <div class="container">
+            <div id='div-7' class="div-7">
+                <div class="contact">
+                    <center>
+                        <h3 class='mt-5'>Savollaringizni bizga yozib yuboring</h3>
+                        <h5 style='color: #CDC3C4;'>Siz ko'rsatgan raqam bo'yicha biz savollaringizga javob berishga harakat qilamiz.</h5>
+                        <form class='mt-4' method='POST' action="">
+                            {% csrf_token %}
+                            {{cont.as_p}}
+                            <button style='background-color: #FF6E30;width: 150px;' class='btn text-white mb-4' type="submit">Yuborish</button>
+                        </form>
+                    </center>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6 col-md-4 mb-5">
+                        <a style='text-decoration: none;' href="#"><h2><b> RoboHack</b></h2></a>
+                        <h6 style='font-weight: bold;font-size: 15px;' class='text-white mt-3'>Robocode IT Academy tomonidan 2022-yil yo'lga qo'yilgan.</h6>
+                        <h6><b>Barcha taklif va savollaringizni bizga yozib yuborishingiz mumkin.</b></h6>
+                    </div>
+                    <div class="col-6 col-md-3 mb-5">
+                        <h3>Bog'lanish</h3>
+                        <h6 class='mt-3'><i class='fas fa-phone mr-2'></i>+998931234567</h6>
+                        <h6 class='mt-3'><i class='fas fa-map-marker-alt mr-2'></i>Andijon sh. Uzbekistan</h6>
+                        <h6 class='mt-3'><i class='fas fa-envelope mr-2'></i>@hackathon.uz</h6>
+                    </div>
+                    <div class="col-6 col-md-2 mb-5">
+                        <h3>Qoshimcha</h3>
+                        <h6 class='mt-3'><i class='fas fa-info mr-2'></i>Biz haqimizda</h6>
+                        <h6 class='mt-3'><i class='fas fa-phone mr-2'></i>Aloqa</h6>
+                    </div>
+                    <div class="col-6 col-md-2 mb-5">
+                        <h3>Bo'limlar</h3>
+                        <h6 class='mt-3'>Musobaqalar</h6>
+                        <h6 class='mt-3'>Tadbirlar</h6>
+                        <h6 class='mt-3'>Bog'lanish</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var splide = new Splide('.splide', {
+                focus: 'center',
+                type: 'loop',
+                perPage: 3,
+                autoplay: true,
+            });
+
+            splide.mount();
+        });
+    </script>
+{% endblock content %}
